@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <menu>
+        <li>
+          <button type="menu" value="Archivo" menu="menuarchivo">
+          <menu id="menuarchivo" type="context">
+            <menuitem label="Nuevo..." onclick="nuevo()">
+            <menuitem label="Abrir..." onclick="abrir()">
+            <menuitem label="Guardar" onclick="guardar()">
+            <menuitem label="Guardar como..." onclick="guardarcomo()">
+          </menu>
+        </li>
+        <li>
+          <button type="menu" value="Editar" menu="menueditar">
+          <menu id="menueditar" type="context">
+            <menuitem label="Copiar" onclick="copiar()">
+            <menuitem label="Cortar" onclick="cortar()">
+            <menuitem label="Pegar" onclick="pegar()">
+          </menu>
+        </li>
+        <li>
+          <button type="menu" value="Ayuda" menu="menuayuda">
+          <menu id="menuayuda" type="context">
+            <menuitem label="Contenidos de ayuda" onclick="contenidosayuda()">
+            <menuitem label="Acerca" onclick="acerca()">
+          </menu>
+        </li>
+      </menu>
+</body>
+</html>

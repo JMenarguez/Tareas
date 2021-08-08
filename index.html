@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas Ibérico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="icomoon/style.css">
+</head>
+<body>
+    <header>
+        <div class="menu_bar container">
+			<a href="#" class="bt-menu"><span class="icon-menu"></span>Menu</a>
+		</div>
+        <nav>
+            <ul>
+               <li><a href="#" id="home"><span class="icon-home3"></span> Tareas</a></li>
+               <li><a href="#" id="md"><span class="icon-calendar"></span> Mi día</a></li>
+               <li><a href="#" id="ti"><span class="icon-star-full"></span> Importantes</a></li>
+               <li><a href="#" id="tt"><span class="icon-checkbox-checked"></span> Terminadas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container p-4 main-container">
+        <div class="row">   
+            <div class="col-md-6 ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h2><span><i class="fas fa-laptop-house"></i></span>Tareas 1.0</h2>
+                            <br>
+                        </div>
+                        <form action="" id="task-form">
+                            <div class="row">
+                                <div class="form-group d-flex">
+                                    <div class="col-md-12">
+                                    <input title="Fecha de la tarea" type="datetime-local" id="task-date" class="form-control" value="" placeholder="Fecha" >
+                                    </div>
+                                    <div class="col-md-1">
+                                      <a title="Tarea importante" class="favorito-main" ><i style="color:#000;" id="favoritoMain" class="fas fa-star"></i></a>
+                                      <a title="Tarea importante" class="favorito-main"><i hidden style="color:#FFD523;" id="favoritoMain1" class="fas fa-star"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="task-title" class="form-control" placeholder="Nombre Tarea" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="" id="task-description"  rows="3" class="form-control" placeholder="Descripcion tarea"></textarea>
+                            </div>
+                            <button class="btn btn-primary" id="btn-task">
+                                Guardar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+              
+            <div class="col-md-6" >
+                <p id="task-filtros">Tareas :</p>
+                <div id="task-container">
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>     
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCrEaIo1WFoTnGhOn03wkDZfWN73lbPiGs",
+    authDomain: "tareas-b779d.firebaseapp.com",
+    projectId: "tareas-b779d",
+    storageBucket: "tareas-b779d.appspot.com",
+    messagingSenderId: "865119347664",
+    appId: "1:865119347664:web:50fe9edf7a58996acc4fd5"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="https://kit.fontawesome.com/b8df2bd4c0.js" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="index.js"></script>
+<script src="menu.js"></script>
+</html>
