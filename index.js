@@ -15,10 +15,9 @@ const obtenerHoy=()=>{
     const hoy = new Date(tiempoTranscurrido);
     let fechavalor=hoy.toISOString();
     let horavalor=hoy.toLocaleTimeString();
-    fechavalor=fechavalor.substring(0, 11)+horavalor;
+    fechavalor=fechavalor.substring(0, 16);
     fechafiltro=fechavalor.substring(0,10);
-    console.log(hoy.toLocaleTimeString());
-    console.log(hoy.toISOString());
+    
     document.getElementById('task-date').value=fechavalor;
 }
 const taskForm=document.querySelector('#task-form');
