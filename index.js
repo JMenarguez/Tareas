@@ -10,11 +10,11 @@ let filtroterminadas=false;
 let filtroimportante='#000';
 let fechafiltro="";
 let filtrohoy=false;
+let usuario=""
 
 const obtenerHoy=()=>{
     const hoy = new Date(tiempoTranscurrido);
     let fechavalor=hoy.toISOString();
-    let horavalor=hoy.toLocaleTimeString();
     fechavalor=fechavalor.substring(0, 16);
     fechafiltro=fechavalor.substring(0,10);
     
@@ -22,17 +22,28 @@ const obtenerHoy=()=>{
 }
 const taskForm=document.querySelector('#task-form');
 const taskContainer=document.getElementById('task-container');
-const saveTask=(fecha,title,description,importante,terminada)=>{
+const saveTask=(fecha,title,description,importante,terminada,usuario)=>{
     db.collection('tareas').doc().set({
         fecha,
         title,
         description,
         importante,
-        terminada
+        terminada,
+        usuario
     })
+    // db.collection('usuarios').doc().set({
+    //     usuario:'mlorenas',
+    //     clave:123
+    // })
 }
-const getTask=()=>{
-    //db.collection('tareas').get();
+const getUser=async ()=>{
+    Usuarios= await db.collection('usuarios').get();
+    console.log(Usuarios.docs);
+     Usuarios.docs.forEach(doc => {
+          usuario=doc.data().usuario;
+         
+     })
+     document.getElementById('user').innerHTML=usuario;
 };
 
 const editTask=id=>db.collection('tareas').doc(id).get();
@@ -65,9 +76,9 @@ const onGetTask1=()=>{
           
           <p class="${tareas.terminada}">${tareas.description}</p>
           <div class="action" hidden data-id="${tareas.id}">
-            <button title="Borrar Tarea" class="btn btn-danger btnBorrar"><i data-id="${tareas.id}" class="fas fa-trash-alt"></i></button>
-            <button title="Editar Tarea" class="btn btn-primary btnEdit"><i data-id="${tareas.id}" class="fas fa-pen-alt"></i></button>
-            <button title="Terminar Tarea" class="btn btn-success btnFinal"><i data-id="${tareas.id}" class="fas fa-clipboard-check"></i></button>
+            <button title="Borrar Tarea" class="btn btn-danger btn-lg btnBorrar"><i data-id="${tareas.id}" class="fas fa-trash-alt"></i></button>
+            <button title="Editar Tarea" class="btn btn-primary btn-lg btnEdit"><i data-id="${tareas.id}" class="fas fa-pen-alt"></i></button>
+            <button title="Terminar Tarea" class="btn btn-success btn-lg btnFinal"><i data-id="${tareas.id}" class="fas fa-clipboard-check"></i></button>
             
           </div>
         </div>`;
@@ -109,6 +120,7 @@ const onGetTask1=()=>{
                taskForm['task-date'].value=tarea.fecha;
                document.getElementById('favoritoMain').style.color = tarea.importante;
                taskForm['btn-task'].innerText='Actualizar';
+               taskForm['task-title'].focus();
             })
         })
         const btnFinal=document.querySelectorAll('.btnFinal');
@@ -138,6 +150,7 @@ const onGetTask1=()=>{
 }
 window.addEventListener('DOMContentLoaded',async (e)=>{
     obtenerHoy();
+    getUser();
     //const querySnapshot=await getTask();
     onGetTask1();
 })
@@ -190,7 +203,7 @@ taskForm.addEventListener('submit',async (e)=>{
     //usemos async await para esperar la respuesta
     //hasta qeu no termina no continua con lo de abajo (async)
     if(!editStatus){
-        await saveTask(fecha.value,title.value,description.value,importante,terminada);
+        await saveTask(fecha.value,title.value,description.value,importante,terminada,usuario);
     }else{
         await updateTask(id,{
             fecha:fecha.value,
