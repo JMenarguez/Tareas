@@ -122,4 +122,7 @@ section{
     #task-container h3{
         font-size:20px ;
     }
+    #task-title,#task-description{
+        font-size: 18px;
+    }
 }

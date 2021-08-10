@@ -6,7 +6,7 @@ let editStatus=false;
 let id="";
 let importante="#000";
 let terminada=false;
-let filtroterminadas=false;
+let filtroterminadas=true;
 let filtroimportante='#000';
 let fechafiltro="";
 let filtrohoy=false;
@@ -36,15 +36,13 @@ const saveTask=(fecha,title,description,importante,terminada,usuario)=>{
     //     clave:123
     // })
 }
-const getUser=async ()=>{
-    Usuarios= await db.collection('usuarios').get();
-    console.log(Usuarios.docs);
-     Usuarios.docs.forEach(doc => {
-          usuario=doc.data().usuario;
-         
-     })
-     document.getElementById('user').innerHTML=usuario;
-};
+
+function getUser() {
+    var sPaginaURL = window.location.search;
+    var sURLVariables = sPaginaURL.split('=');
+    usuario=sURLVariables[1];
+    document.getElementById('user').innerHTML=usuario;
+}
 
 const editTask=id=>db.collection('tareas').doc(id).get();
 const deleteTask=id =>{
@@ -65,6 +63,7 @@ const onGetTask1=()=>{
         //a=JSON.parse(tareas);
         
         tareas.id=doc.id;
+        if(tareas.usuario==usuario){
         if((tareas.terminada!=filtroterminadas || !filtroterminadas) && (tareas.importante==filtroimportante || filtroimportante=='#000') && (tareas.fecha.substring(0,10)==fechafiltro || !filtrohoy)){
         contadorTareas++;
         taskContainer.innerHTML+=`<div class="card card-body mt-2 border-primary" id="acciones">
@@ -83,10 +82,11 @@ const onGetTask1=()=>{
           </div>
         </div>`;
         }
+        }
         //armamos el titulo
         titulo=(filtrohoy)?'Mi Día: ':'Tareas: ';
         titulofiltro=(filtroimportante!='#000')?' Importantes ':'';
-        titulofiltro+=(filtroterminadas)?' Terminadas':'';
+        titulofiltro+=(!filtroterminadas)?' Terminadas':'';
         $('#task-filtros').html(titulo+contadorTareas+titulofiltro);
         
         const btnacciones=document.querySelectorAll('#btnAcciones');
@@ -95,7 +95,7 @@ const onGetTask1=()=>{
                 divactionid=e.target.dataset.id;
                 //$('.action[data-id='+divactionid+']').html("hola");
                 $('.action[data-id='+divactionid+']').attr('hidden',$('.action[data-id='+divactionid+']').attr('hidden')==='hidden'?false:true );
-                console.log();
+               
             });
         })
         
@@ -151,13 +151,12 @@ const onGetTask1=()=>{
 window.addEventListener('DOMContentLoaded',async (e)=>{
     obtenerHoy();
     getUser();
-    //const querySnapshot=await getTask();
     onGetTask1();
 })
 
 
 document.getElementById('home').addEventListener('click',(e)=>{
-    filtroterminadas=false;
+    filtroterminadas=true;
     filtroimportante='#000';
     filtrohoy=false;
     onGetTask1();
@@ -209,7 +208,8 @@ taskForm.addEventListener('submit',async (e)=>{
             fecha:fecha.value,
             title:title.value,
             description:description.value,
-            importante:importante
+            importante:importante,
+            usuario:usuario
             })
             editStatus=false;
             id="";
