@@ -35,7 +35,7 @@ loginForm.addEventListener('submit',async (e)=>{
     })
     
     if(retorno!=""){
-        window.location.href='index.html?usuario='+retorno;
+        window.location.href='index1.html?usuario='+retorno;
     }else{
         alert('usuario no registrado');
     }

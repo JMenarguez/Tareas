@@ -4,79 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareas Ibérico</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/pulse/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="stylesheet" href="icomoon/style.css">
+    <title>Formulario de Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <header>
-        <div class="menu_bar container">
-			<a href="#" class="bt-menu"><span class="icon-menu"></span>Menu</a>
-		</div>
-        <nav>
-            <ul>
-               <li><a href="#" id="home"><span class="icon-home3"></span> Tareas</a></li>
-               <li><a href="#" id="md"><span class="icon-calendar"></span> Mi día</a></li>
-               <li><a href="#" id="ti"><span class="icon-star-full"></span> Importantes</a></li>
-               <li><a href="#" id="tt"><span class="icon-checkbox-checked"></span> Terminadas</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <div class="container p-4 main-container">
-        <div class="row">   
-            <div class="col-md-6 ">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <div class="col-md-7">
-                           <h2 class="text-center"><span><i class="fas fa-laptop-house"></i></span>Tareas</h2>
-                        </div>
-                           <div class="col-md-5">
-                               <h5 id="user" class="text-right"></h5>
-                           </div>
-                            
-                        </div>
-                        <br>
-                        <form action="" id="task-form">
-                            <div class="row">
-                                <div class="form-group d-flex">
-                                    <div class="col-md-12">
-                                    <input title="Fecha de la tarea" type="datetime-local" id="task-date" class="form-control" value="" placeholder="Fecha" >
-                                    </div>
-                                    <div class="col-md-1">
-                                      <a title="Tarea importante" class="favorito-main" ><i style="color:#000;" id="favoritoMain" class="fas fa-star"></i></a>
-                                      <a title="Tarea importante" class="favorito-main"><i hidden style="color:#FFD523;" id="favoritoMain1" class="fas fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="task-title" class="form-control" placeholder="Nombre Tarea" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="" id="task-description"  rows="3" class="form-control" placeholder="Descripcion tarea"></textarea>
-                            </div>
-                            <button class="btn btn-primary" id="btn-task">
-                                Guardar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-              
-            <div class="col-md-6" >
-                <p id="task-filtros">Tareas :</p>
-                <div id="task-container">
-
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
+    <form action="" method="" id="loginForm">
+        <h2>Te damos la bienvenida </h2>
+        <h2><span><i class="fas fa-laptop-house"></i></span>Tareas Ibérico</h2>
+        <img src="To_do_list.png" class='todolist' alt="" width="350">
+        <h3 class="text-center">Login de Usuario</h3>
+        <input type="text" placeholder="&#128272; Usuario" name="usuario" id="usuario">
+        <input type="password" placeholder="&#128272; Contraseña" name="clave" id="clave">
+        <input type="submit" value="Ingresar">
+    </form>
 </body>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="//www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
 
@@ -99,7 +40,5 @@
   firebase.initializeApp(firebaseConfig);
 </script>
 <script src="//kit.fontawesome.com/b8df2bd4c0.js" crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery-latest.js"></script>
-<script src="index.js"></script>
-<script src="menu.js"></script>
+<script src="login.js"></script>
 </html>
