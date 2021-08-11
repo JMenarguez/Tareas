@@ -20,7 +20,6 @@ const formatFecha=(fecha)=>{
     var year = fecha.getUTCFullYear();
     var hora=fecha.toLocaleTimeString();
     fechavalor=year+"-"+month+"-"+day+"T"+hora;
-    console.log(fechavalor);
     fechafiltro=year+"-"+month+"-"+day
     document.getElementById('task-date').value=fechavalor;
 }
