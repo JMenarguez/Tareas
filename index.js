@@ -136,6 +136,7 @@ const onGetTask1=()=>{
                taskForm['task-date'].value=tarea.fecha;
                document.getElementById('favoritoMain').style.color = tarea.importante;
                taskForm['btn-task'].innerText='Actualizar';
+               mostrarNueva();
                taskForm['task-title'].focus();
             })
         })
