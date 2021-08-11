@@ -12,16 +12,36 @@ let fechafiltro="";
 let filtrohoy=false;
 let usuario=""
 
-const obtenerHoy=()=>{
-    const hoy = new Date(tiempoTranscurrido);
-    let fechavalor=hoy.toISOString();
-    fechavalor=fechavalor.substring(0, 16);
-    fechafiltro=fechavalor.substring(0,10);
+const formatFecha=(fecha)=>{
     
+    var month = ("0"+(fecha.getUTCMonth()+1)).slice(-2); //months from 1-12
+    var day =("0"+ fecha.getDate()).slice(-2);
+
+    var year = fecha.getUTCFullYear();
+    var hora=fecha.toLocaleTimeString();
+    fechavalor=year+"-"+month+"-"+day+"T"+hora;
+    console.log(fechavalor);
+    fechafiltro=year+"-"+month+"-"+day
     document.getElementById('task-date').value=fechavalor;
 }
+const obtenerHoy=()=>{
+    const hoy = new Date(tiempoTranscurrido);
+    //let fechavalor=hoy.toISOString();
+    //console.log(hoy.toLocaleTimeString());
+    //fechavalor=fechavalor.substring(0, 16);
+    //fechafiltro=fechavalor.substring(0,10);
+    //console.log(fechavalor);
+    formatFecha(hoy);
+
+    //document.getElementById('task-date').value=fechavalor;
+}
+
 const taskForm=document.querySelector('#task-form');
+const btnGuardar=document.getElementById('btn-task');
+const btnCancelar=document.getElementById('btn-cancel');
 const taskContainer=document.getElementById('task-container');
+const errortask=document.getElementById('errortask');
+
 const saveTask=(fecha,title,description,importante,terminada,usuario)=>{
     db.collection('tareas').doc().set({
         fecha,
@@ -51,25 +71,23 @@ const deleteTask=id =>{
 }
 const updateTask=(id,updatedTask)=>db.collection('tareas').doc(id).update(updatedTask);
 
-onGetTask=(callback)=>db.collection('tareas').onSnapshot(callback);
+onGetTask=(callback)=>db.collection('tareas').where("usuario","==",usuario).where("terminada","==",!filtroterminadas).onSnapshot(callback);
+
 
 const onGetTask1=()=>{
     onGetTask((querySnapshot)=>{
     taskContainer.innerHTML="";
     let contadorTareas=0;
     querySnapshot.forEach(doc => {
-        //console.log(doc.data());   
+       // console.log(doc.data());   
         const tareas=doc.data();
-        //a=JSON.parse(tareas);
-        
         tareas.id=doc.id;
-        if(tareas.usuario==usuario){
-        if((tareas.terminada!=filtroterminadas || !filtroterminadas) && (tareas.importante==filtroimportante || filtroimportante=='#000') && (tareas.fecha.substring(0,10)==fechafiltro || !filtrohoy)){
+        //if(tareas.usuario==usuario){
+        if((tareas.importante==filtroimportante || filtroimportante=='#000') && (tareas.fecha.substring(0,10)==fechafiltro || !filtrohoy)){
         contadorTareas++;
         taskContainer.innerHTML+=`<div class="card card-body mt-2 border-primary" id="acciones">
           <div class="tarea-fecha">
              <h5>${tareas.fecha} </h5><a title="Tarea importante" class="favorito"><i data-id="${tareas.id}" value="${tareas.importante}" style="color:${tareas.importante}" class="fas fa-star"></i></a><a><i id="btnAcciones" data-id="${tareas.id}" class="fas fa-ellipsis-v"></i></a>
-            
           </div>
           <h3>${tareas.title} </h3>
           
@@ -82,7 +100,7 @@ const onGetTask1=()=>{
           </div>
         </div>`;
         }
-        }
+        //}
         //armamos el titulo
         titulo=(filtrohoy)?'Mi Día: ':'Tareas: ';
         titulofiltro=(filtroimportante!='#000')?' Importantes ':'';
@@ -92,13 +110,11 @@ const onGetTask1=()=>{
         const btnacciones=document.querySelectorAll('#btnAcciones');
         btnacciones.forEach(btn=>{
             btn.addEventListener('click',(e)=>{
+                
                 divactionid=e.target.dataset.id;
-                //$('.action[data-id='+divactionid+']').html("hola");
                 $('.action[data-id='+divactionid+']').attr('hidden',$('.action[data-id='+divactionid+']').attr('hidden')==='hidden'?false:true );
-               
             });
         })
-        
 
         const btnBorrar=document.querySelectorAll('.btnBorrar');
         btnBorrar.forEach(btn=>{
@@ -115,6 +131,7 @@ const onGetTask1=()=>{
                editStatus=true;
                id=doc.id;
                importante=tarea.importante;
+               
                taskForm['task-title'].value=tarea.title; 
                taskForm['task-description'].value=tarea.description;
                taskForm['task-date'].value=tarea.fecha;
@@ -171,16 +188,18 @@ document.getElementById('ti').addEventListener('click',(e)=>{
     }else{
         filtroimportante='#FFD523';
     }
-    console.log(filtroimportante);
     onGetTask1();
 })  
 
 document.getElementById('md').addEventListener('click',(e)=>{
     filtrohoy=!filtrohoy;
-    console.log(fechafiltro);
     onGetTask1();
 })  
-
+document.getElementById('cs').addEventListener('click',(e)=>{
+    localStorage.setItem("Usuario", "");
+    window.location.href='index.html';
+    
+}) 
 document.getElementById('favoritoMain').addEventListener('click',()=>{
         if(importante=="#000"){
           importante="#FFD523";
@@ -192,12 +211,30 @@ document.getElementById('favoritoMain').addEventListener('click',()=>{
     
 })
 
+function mostrarNueva(){
+    document.getElementById('task-form').style.display = 'block';
+    document.getElementById('btn-new').style.display='none';
+    
 
-taskForm.addEventListener('submit',async (e)=>{
+}
+//taskForm.addEventListener('submit',async (e)=>{
+    btnGuardar.addEventListener('click',async (e)=>{
     e.preventDefault();
+    
     const title=taskForm['task-title'];
     const description=taskForm['task-description'];
     const fecha=taskForm['task-date'];
+    
+    if(title.value==""){ 
+        errortask.removeAttribute('hidden');
+        errortask.innerHTML='El titulo no puede estar en blanco';
+        return false
+    }
+    if(description.value==""){
+        errortask.removeAttribute('hidden');
+        errortask.innerHTML='La descripcion de la tarea no puede estar en blanco';
+        return false
+    };
     //peticion asincrona, termina de guardar y devuelve una respuesta
     //usemos async await para esperar la respuesta
     //hasta qeu no termina no continua con lo de abajo (async)
@@ -221,6 +258,27 @@ taskForm.addEventListener('submit',async (e)=>{
     taskForm.reset();
     obtenerHoy();
     title.focus();
+    errortask.setAttribute('hidden',"");
+    if(screen.width<800){
+        document.getElementById('task-form').style.display = 'none';
+        document.getElementById('btn-new').style.display='block';
+    }
 
     
 })
+btnCancelar.addEventListener('click',async (e)=>{
+    e.preventDefault();
+    importante="#000";
+    document.getElementById('favoritoMain').style.color=importante;
+    document.getElementById('favoritoMain1').setAttribute("hidden","");
+    
+    taskForm.reset();
+    obtenerHoy();
+    taskForm['task-title'].focus();
+    errortask.setAttribute('hidden',"");
+    if(screen.width<800){
+    document.getElementById('task-form').style.display = 'none';
+    document.getElementById('btn-new').style.display='block';
+    }
+})
+

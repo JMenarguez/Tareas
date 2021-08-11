@@ -1,5 +1,8 @@
 const loginForm=document.querySelector('#loginForm');
 const db = firebase.firestore();
+var nombre = localStorage.getItem("Usuario");
+if(nombre!="")window.location.href='index1.html?usuario='+nombre;
+
 
 const validarUser=async (usu,clave)=>{
          let retorno="";
@@ -23,6 +26,8 @@ loginForm.addEventListener('submit',async (e)=>{
     const usu =document.getElementById('usuario').value;
     const clave =document.getElementById('clave').value;
     let retorno="";
+    let iniciada=document.getElementById('msi').checked;
+    
     Usuariosdb= await db.collection('usuarios').get();
     Usuariosdb.docs.forEach(doc => {
         usuariofb=doc.data().usuario;
@@ -35,8 +40,9 @@ loginForm.addEventListener('submit',async (e)=>{
     })
     
     if(retorno!=""){
-        window.location.href='index1.html?usuario='+retorno;
+        if(iniciada) localStorage.setItem("Usuario",retorno);
+         window.location.href='index1.html?usuario='+retorno;
     }else{
-        alert('usuario no registrado');
+        alert('Usuario no registrado');
     }
 })

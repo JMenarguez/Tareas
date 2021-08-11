@@ -53,9 +53,13 @@ section{
 .main-container{
     z-index:1;
 }
-/* #task-date{
+#btn-new{
+    display:none;
     float:left;
-}*/
+}
+.task-form{
+    display:block;
+}
 .favorito-main {
 
     cursor: pointer;
@@ -116,6 +120,9 @@ section{
         font-weight: 50;
         
     }
+    #task-form{
+        display:none;
+    }
     #task-container h5{
         font-size: small;
     }
@@ -124,5 +131,9 @@ section{
     }
     #task-title,#task-description{
         font-size: 18px;
+    }
+    #btn-new{
+        display:block;
+        margin-right:auto;
     }
 }
