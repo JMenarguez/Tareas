@@ -70,7 +70,7 @@ const deleteTask=id =>{
 }
 const updateTask=(id,updatedTask)=>db.collection('tareas').doc(id).update(updatedTask);
 
-onGetTask=(callback)=>db.collection('tareas').where("usuario","==",usuario).where("terminada","==",!filtroterminadas).onSnapshot(callback);
+onGetTask=(callback)=>db.collection('tareas').orderBy('fecha','desc').where("usuario","==",usuario).where("terminada","==",!filtroterminadas).onSnapshot(callback);
 
 
 const onGetTask1=()=>{
@@ -78,7 +78,7 @@ const onGetTask1=()=>{
     taskContainer.innerHTML="";
     let contadorTareas=0;
     querySnapshot.forEach(doc => {
-       // console.log(doc.data());   
+        console.log(doc.data());   
         const tareas=doc.data();
         tareas.id=doc.id;
         //if(tareas.usuario==usuario){
@@ -197,7 +197,7 @@ document.getElementById('md').addEventListener('click',(e)=>{
 })  
 document.getElementById('cs').addEventListener('click',(e)=>{
     localStorage.setItem("Usuario", "");
-    window.location.href='index.html';
+    window.location.href='login.html';
     
 }) 
 document.getElementById('favoritoMain').addEventListener('click',()=>{

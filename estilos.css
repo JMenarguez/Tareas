@@ -53,9 +53,17 @@ section{
 .main-container{
     z-index:1;
 }
+.fa-laptop-house{
+    font-size: 38px;
+    color: #056972;
+}
+.user-label{
+    font-weight: 700 !important;
+    color: #056972;
+}
 #btn-new{
     display:none;
-    float:left;
+    
 }
 .task-form{
     display:block;
@@ -120,6 +128,7 @@ section{
         font-weight: 50;
         
     }
+    
     #task-form{
         display:none;
     }
@@ -133,7 +142,12 @@ section{
         font-size: 18px;
     }
     #btn-new{
+        margin:5px auto;
         display:block;
-        margin-right:auto;
+        width: 90%;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        
     }
 }

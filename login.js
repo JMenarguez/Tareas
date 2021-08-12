@@ -1,7 +1,5 @@
 const loginForm=document.querySelector('#loginForm');
 const db = firebase.firestore();
-var nombre = localStorage.getItem("Usuario");
-if(nombre!="")window.location.href='index1.html?usuario='+nombre;
 
 
 const validarUser=async (usu,clave)=>{
