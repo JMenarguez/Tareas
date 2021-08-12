@@ -24,6 +24,14 @@ h1{
     text-align: center;
     font-weight: 700px;
     font-size: 25px;
+    color:#00C1D4;
+}
+h2{
+    text-align: center;
+    font-weight: 700px;
+    font-size: 39px;
+    margin-bottom: 10px;
+    color:#00C1D4;
 }
 form{
     background: #fff;
@@ -39,7 +47,7 @@ form{
 }
 form .grupo{
     position: relative;
-    margin: 45px;
+    margin: 25px;
 
 }
 input{
@@ -66,7 +74,7 @@ input:focus{
 label{
     color:var(--colorTextos);
     position: absolute;
-    font-size: 16px;
+    font-size: 18px;
     left:5px;
     top:10px;
     transition: 0.5s ease-in-out all;
@@ -75,8 +83,8 @@ label{
 }
 input:focus~label,
 input:valid~label{
-    top:-14px;
-    font-size: 12px;
+    top:-10px;
+    font-size: 15px;
     color:#2196f3;
 }
 .barra{
@@ -118,7 +126,7 @@ button{
 .power{
     text-align: center;
 }
-@media screen and (max-width:500px) {
+@media screen and (max-width:480px) {
 
     form{
         width: 80%;
