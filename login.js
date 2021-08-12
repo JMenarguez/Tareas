@@ -44,3 +44,6 @@ loginForm.addEventListener('submit',async (e)=>{
         alert('Usuario no registrado');
     }
 })
+document.getElementById('crearCuenta').addEventListener('click',()=>{
+    window.location.href='registro.html';
+})
