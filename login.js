@@ -28,7 +28,7 @@ loginForm.addEventListener('submit',async (e)=>{
     
     Usuariosdb= await db.collection('usuarios').get();
     Usuariosdb.docs.forEach(doc => {
-        usuariofb=doc.data().usuario;
+        usuariofb=doc.data().email;
         clavefb=doc.data().clave;
         if(usuariofb==usu && clavefb==clave){
         //console.log(usuariofb);

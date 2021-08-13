@@ -78,7 +78,7 @@ const onGetTask1=()=>{
     taskContainer.innerHTML="";
     let contadorTareas=0;
     querySnapshot.forEach(doc => {
-        console.log(doc.data());   
+        //console.log(doc.data());   
         const tareas=doc.data();
         tareas.id=doc.id;
         //if(tareas.usuario==usuario){
@@ -92,9 +92,9 @@ const onGetTask1=()=>{
           
           <p class="${tareas.terminada}">${tareas.description}</p>
           <div class="action" hidden data-id="${tareas.id}">
-            <button title="Borrar Tarea" class="btn btn-danger btn-lg btnBorrar"><i data-id="${tareas.id}" class="fas fa-trash-alt"></i></button>
-            <button title="Editar Tarea" class="btn btn-primary btn-lg btnEdit"><i data-id="${tareas.id}" class="fas fa-pen-alt"></i></button>
-            <button title="Terminar Tarea" class="btn btn-success btn-lg btnFinal"><i data-id="${tareas.id}" class="fas fa-clipboard-check"></i></button>
+            <button title="Borrar Tarea" class="btn btn-danger btn-lg btnBorrar" data-id="${tareas.id}"><i data-id="${tareas.id}" class="fas fa-trash-alt"></i></button>
+            <button title="Editar Tarea" class="btn btn-primary btn-lg btnEdit" data-id="${tareas.id}"><i data-id="${tareas.id}" class="fas fa-pen-alt"></i></button>
+            <button title="Terminar Tarea" class="btn btn-success btn-lg btnFinal" data-id="${tareas.id}"><i data-id="${tareas.id}" class="fas fa-clipboard-check"></i></button>
             
           </div>
         </div>`;
@@ -125,8 +125,10 @@ const onGetTask1=()=>{
         const btnEdit=document.querySelectorAll('.btnEdit');
         btnEdit.forEach(btn=>{
             btn.addEventListener('click',async (e)=>{
+               
                const doc=await editTask(e.target.dataset.id);
                const tarea=doc.data();
+
                editStatus=true;
                id=doc.id;
                importante=tarea.importante;
@@ -158,6 +160,7 @@ const onGetTask1=()=>{
                 editStatus=false;
                 id="";
                 terminada=false;
+                
             })
         })  
           

@@ -128,7 +128,9 @@ section{
         font-weight: 50;
         
     }
-    
+    #user{
+        font-size: 14px;
+    }
     #task-form{
         display:none;
     }

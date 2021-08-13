@@ -12,30 +12,35 @@
 }
 body {
     font-family: 'Roboto';
-    background: #8E2DE2;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 650px;
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100vh;
     display: flex;
     justify-content: center;
+   
     align-items: center;
 }
-h1{
-    text-align: center;
-    font-weight: 700px;
-    font-size: 25px;
-    color:#00C1D4;
-}
 h2{
+    text-align: center;
+    font-weight: 600px;
+    font-size: 18px;
+    color:#05828d;
+    
+}
+span{
     text-align: center;
     font-weight: 700px;
     font-size: 39px;
     margin-bottom: 10px;
+    margin-right: 10px;
     color:#00C1D4;
+    justify-self: self-start;
+
 }
 form{
     background: #fff;
-    padding: 40px 0px;
+    padding: 50px 0px;
     box-shadow: 0 0 6px 0 rgba(255,255,255,0.8);
     border-radius: 10px;
    
@@ -47,7 +52,7 @@ form{
 }
 form .grupo{
     position: relative;
-    margin: 25px;
+    margin: 45px 10px;
 
 }
 input{
@@ -65,10 +70,10 @@ input:focus{
     color: rgb(94,93,93);
 }
 .warnings{
-    width: 200px;
+    width: 100%;
     text-align: center;
     margin: auto;
-    color:#8E2DE2;
+    color:#8316e2;
     padding-top: 20px;
 }
 label{
@@ -110,10 +115,15 @@ input:focus~.barra::before{
 
 button{
     font-family: "Roboto";
-    background: #8E2DE2;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgb(181,181,181); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(181,181,181,1) 0%, rgba(142,142,142,1) 13%, rgba(5,5,5,1) 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top, rgba(181,181,181,1) 0%,rgba(142,142,142,1) 13%,rgba(5,5,5,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(181,181,181,1) 0%,rgba(142,142,142,1) 13%,rgba(5,5,5,1) 100%); /* Opera 11.10+ */
+    background: linear-gradient(to bottom, rgba(181,181,181,1) 0%,rgba(142,142,142,1) 13%,rgba(5,5,5,1) 100%); /* W3C */
+
+
     border:none;
+    border-radius: 15px;
     display: block;
     width: 80%;
     margin: 10px auto;
@@ -129,6 +139,6 @@ button{
 @media screen and (max-width:480px) {
 
     form{
-        width: 80%;
+        width: 85%;
     }
 }

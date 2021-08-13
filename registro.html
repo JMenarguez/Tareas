@@ -12,8 +12,8 @@
 <body>
     <form action="" method="POST" id="form">
         <div class="form">
-            <h2 class=""><span><i class="fas fa-laptop-house"></i></span>Tareas</h2>
-            <h1>Registro</h1>
+            <h2 class=""><span><i class="fas fa-laptop-house"></i></span>Registro</h2>
+            
             <div class="grupo">
                 <input type="text" name="" id="name" ><span class="barra"></span>
                 <label for="">Usuario</label>
@@ -38,6 +38,28 @@
     </form>
     
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="//www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script src="//www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCrEaIo1WFoTnGhOn03wkDZfWN73lbPiGs",
+        authDomain: "tareas-b779d.firebaseapp.com",
+        projectId: "tareas-b779d",
+        storageBucket: "tareas-b779d.appspot.com",
+        messagingSenderId: "865119347664",
+        appId: "1:865119347664:web:50fe9edf7a58996acc4fd5"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 <script src="//kit.fontawesome.com/b8df2bd4c0.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 </html>

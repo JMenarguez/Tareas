@@ -1,7 +1,7 @@
 
 var nombre = localStorage.getItem("Usuario");
 
-window.setTimeout(function(){redireccion(nombre)}, 2000);
+window.setTimeout(function(){redireccion(nombre)}, 3000);
 
 function redireccion(nombre){
 if(nombre!=""){
