@@ -7,6 +7,8 @@ body{
     display: flex;
     min-height: 100vh;
     width: 100%;
+    
+    
 }
 form{
     margin:auto;
@@ -56,7 +58,7 @@ h2,h3{
 
 .todolist{
     text-align: center;
-    margin:auto;
+    margin:auto 33%;
 }
 .input-text,input[type="submit"]{
     display: block;
@@ -86,19 +88,25 @@ input[type="submit"]:active{
     display: flex;
     justify-content: center;
     align-items: baseline;
-    font-size: medium;
+    font-size: large;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:crimson;
+    font-weight: 500;
 }
 .check-input{
     flex:none;
     margin-right: 10px;
+    
     
 }
 .crear-cuenta{
     cursor: pointer;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: underline;
-    font-size: 15px;
+    text-align: center;
+    font-size: 18px;
+    color:#0760b3;
+    font-weight: 500;
 }
 @media(max-width:768px){
     form{
@@ -113,13 +121,8 @@ input[type="submit"]:active{
         
     }
     .todolist{
-        width: 250px;
-        margin:auto 15px ;
+        width: 200px;
+        margin:auto 37px ;
     }
-    .crear-cuenta{
-        
-        margin: 0 20%;      
-        
-        
-    }
+    
 }
