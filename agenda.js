@@ -69,8 +69,8 @@ const onGetAg1=()=>{
           <p>${agenda.telefono}</p>
           <p>${agenda.email}</p>
           <div class="action" hidden data-id="${agenda.id}">
-            <button title="Borrar Tarea" class="btn btn-danger btn-lg btnBorrar" data-id="${agenda.id}"><i data-id="${agenda.id}" class="fas fa-trash-alt"></i></button>
-            <button title="Editar Tarea" class="btn btn-primary btn-lg btnEdit" data-id="${agenda.id}"><i data-id="${agenda.id}" class="fas fa-pen-alt"></i></button>
+            <button title="Borrar Registro" class="btn btn-danger btn-lg btnBorrar" data-id="${agenda.id}"><i data-id="${agenda.id}" class="fas fa-trash-alt"></i></button>
+            <button title="Editar Registro" class="btn btn-primary btn-lg btnEdit" data-id="${agenda.id}"><i data-id="${agenda.id}" class="fas fa-pen-alt"></i></button>
           </div>
         </div>`
         }    
@@ -100,7 +100,7 @@ const onGetAg1=()=>{
         btnEdit.forEach(btn=>{
             btn.addEventListener('click',async (e)=>{
                
-               const doc=await editTask(e.target.dataset.id);
+               const doc=await editAg(e.target.dataset.id);
                const agenda=doc.data();
 
                editStatus=true;
