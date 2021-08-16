@@ -16,10 +16,11 @@ const btnBuscar=document.getElementById('btn-buscar');
 const agContainer=document.getElementById('ag-container');
 const errortask=document.getElementById('errortask');
 
-const saveAg=(nombre,empresa,cuit,telefono,email,usuario)=>{
+const saveAg=(nombre,empresa,direccion,cuit,telefono,email,usuario)=>{
     db.collection('agenda').doc().set({
         nombre,
         empresa,
+        direccion,
         cuit,
         telefono,
         email,
@@ -65,8 +66,11 @@ const onGetAg1=()=>{
              <h3>${agenda.empresa} </h3><a><i id="btnAcciones" data-id="${agenda.id}" class="fas fa-ellipsis-v"></i></a>
           </div>  
           <h5>${agenda.nombre} </h5>
-          <p>${agenda.cuit}</p>
-          <p>${agenda.telefono}</p>
+          <p>${agenda.direccion}</p>
+          <div class="d-flex">
+           <p>${agenda.cuit}  **  Tel:</p>
+           <p>${agenda.telefono}</p>
+          </div>
           <p>${agenda.email}</p>
           <div class="action" hidden data-id="${agenda.id}">
             <button title="Borrar Registro" class="btn btn-danger btn-lg btnBorrar" data-id="${agenda.id}"><i data-id="${agenda.id}" class="fas fa-trash-alt"></i></button>
@@ -107,6 +111,7 @@ const onGetAg1=()=>{
                id=doc.id;
                agForm['ag-nombre'].value=agenda.nombre; 
                agForm['ag-empresa'].value=agenda.empresa;
+               agForm['ag-direccion'].value=agenda.direccion;
                agForm['ag-cuit'].value=agenda.cuit;
                agForm['ag-telefono'].value=agenda.telefono;
                agForm['ag-email'].value=agenda.email;
@@ -149,6 +154,7 @@ btnGuardar.addEventListener('click',async (e)=>{
     
     const nombre=agForm['ag-nombre'];
     const empresa=agForm['ag-empresa'];
+    const direccion=agForm['ag-direccion'];
     const cuit=agForm['ag-cuit'];
     const telefono=agForm['ag-telefono'];
     const email=agForm['ag-email'];
@@ -168,11 +174,12 @@ btnGuardar.addEventListener('click',async (e)=>{
     //usemos async await para esperar la respuesta
     //hasta qeu no termina no continua con lo de abajo (async)
     if(!editStatus){
-        await saveAg(nombre.value,empresa.value,cuit.value,telefono.value,email.value,usuario);
+        await saveAg(nombre.value,empresa.value,direccion.value,cuit.value,telefono.value,email.value,usuario);
     }else{
         await updateAg(id,{
             nombre:nombre.value,
             empresa:empresa.value,
+            direccion:direccion.value,
             cuit:cuit.value,
             telefono:telefono.value,
             email:email.value,
