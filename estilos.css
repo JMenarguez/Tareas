@@ -76,17 +76,28 @@ section{
     font-size: 20px;   
 } 
 .tarea-fecha a{
-    
-     float: right; 
+    float: right; 
     margin-right: 5%;
     font-size: 18px;
 }
-.tarea-fecha h5{
-    
+.tarea-fecha h5,.tarea-fecha h3{
     float: left;
 }
 .true{
     text-decoration: line-through;
+}
+.ag-form{
+    display:block;
+}
+#btn-find{
+    display:none;
+    
+}
+.ag-btns{
+    padding-right: 20px;
+}
+#ag-buscarempresa{
+    display:none;
 }
 @media screen and (max-width:800px ) {
     header nav{
@@ -150,6 +161,26 @@ section{
         border-radius: 8px;
         font-size: 15px;
         font-weight: 600;
-        
+        margin-right: 5px;
     }
+
+    #ag-form{
+        display:none;
+    }
+
+    #ag-container p{
+        font-size:15px ;
+        line-height: 90%;
+        margin-bottom: 10px;
+    }
+    #btn-find{
+        margin:5px auto;
+        display:block;
+        width: 90%;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        margin-left: 5px;
+    }
+
 }

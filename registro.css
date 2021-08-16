@@ -137,9 +137,19 @@ button{
 .power{
     text-align: center;
 }
+#volver{
+    text-decoration: underline;
+    color:darkblue;
+    font-size: 18px;
+    margin-left:50%;
+
+}
 @media screen and (max-width:480px) {
 
     form{
         width: 85%;
+    }
+    #volver{
+        margin-left:40%;
     }
 }

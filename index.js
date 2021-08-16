@@ -198,6 +198,10 @@ document.getElementById('md').addEventListener('click',(e)=>{
     filtrohoy=!filtrohoy;
     onGetTask1();
 })  
+document.getElementById('ag').addEventListener('click',(e)=>{
+    window.location.href='agenda.html?usuario='+usuario;
+    
+})  
 document.getElementById('cs').addEventListener('click',(e)=>{
     localStorage.setItem("Usuario", "");
     window.location.href='login.html';
